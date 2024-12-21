@@ -1,0 +1,96 @@
+project/
+│
+├── frontend/                        # Frontend codebase (React, Vue, Angular, etc.)
+│   ├── public/                      # Static assets (HTML, CSS, JS)
+│   │   ├── index.html               # Main HTML file
+│   │   └── assets/                  # Images, fonts, etc.
+│   │
+│   ├── src/                         # Frontend source code
+│   │   ├── components/              # Reusable UI components
+│   │   │   ├── Header.js            # Header component
+│   │   │   ├── Sidebar.js           # Sidebar component
+│   │   │   └── ServiceCard.js       # Service card component
+│   │   ├── pages/                   # Pages (Home, Dashboard, Login, etc.)
+│   │   │   ├── Login.js             # Login page
+│   │   │   ├── Dashboard.js         # Dashboard page
+│   │   │   ├── EmailService.js      # Email service page
+│   │   │   ├── DataStorage.js       # Data storage service page
+│   │   │   ├── PasswordStorage.js   # Password storage page
+│   │   │   ├── SocialMedia.js       # Social media page
+│   │   │   └── NotFound.js          # 404 page
+│   │   ├── services/                # API service files for HTTP calls
+│   │   │   ├── api.js               # API utility for HTTP requests
+│   │   │   ├── authService.js       # Authentication API
+│   │   │   ├── ipfsService.js       # IPFS file interaction
+│   │   │   ├── emailService.js      # Email API service
+│   │   │   └── dataStorageService.js # Data storage API service
+│   │   ├── styles/                  # CSS/SCSS files
+│   │   │   ├── index.css            # Global CSS
+│   │   │   ├── login.css            # Login page styles
+│   │   │   ├── dashboard.css        # Dashboard page styles
+│   │   │   └── services.css         # Service page styles
+│   │   ├── utils/                   # Utility functions
+│   │   │   ├── authUtils.js         # Utilities for user authentication
+│   │   │   └── ipfsUtils.js         # IPFS interaction utilities
+│   │   ├── App.js                   # Main app component
+│   │   └── index.js                 # App entry point
+│   │
+│   ├── package.json                 # Frontend dependencies
+│   ├── .env                         # Frontend environment variables
+│   └── Dockerfile                   # Frontend containerization
+│
+├── backend/                         # Backend codebase
+│   ├── services/                    # Microservices
+│   │   ├── auth-service/            # Authentication service
+│   │   │   ├── controllers/         # Controllers for routes
+│   │   │   │   ├── authController.js # Handle user login/signup
+│   │   │   ├── models/              # User model and JWT token
+│   │   │   │   └── userModel.js     # User schema
+│   │   │   ├── routes/              # API routes
+│   │   │   │   ├── authRoutes.js    # Authentication routes
+│   │   │   └── index.js             # Entry point for the service
+│   │   │   ├── package.json
+│   │   │   └── Dockerfile
+│   │   │
+│   │   ├── storage-service/         # File storage service
+│   │   │   ├── controllers/         # File upload/download logic
+│   │   │   ├── models/              # File metadata storage (optional)
+│   │   │   ├── routes/              # API routes
+│   │   │   └── ipfs.js              # IPFS interaction logic
+│   │   │   ├── package.json
+│   │   │   └── Dockerfile
+│   │   │
+│   │   ├── social-service/          # Social media integration service
+│   │   │   ├── controllers/         # Social media interactions
+│   │   │   ├── routes/              # API routes
+│   │   │   ├── socialMedia.js       # Logic for social media API calls
+│   │   │   └── package.json
+│   │   │
+│   │   ├── password-service/        # Password storage service
+│   │   │   ├── controllers/         # Password management logic
+│   │   │   ├── models/              # Password metadata (hashing)
+│   │   │   ├── routes/              # API routes
+│   │   │   └── passwordManager.js   # Logic for password storage
+│   │   │   └── package.json
+│   │   │
+│   │   └── gateway/                 # API Gateway
+│   │       ├── routes/              # Proxy routes to services
+│   │       ├── index.js             # Gateway entry point
+│   │       ├── package.json
+│   │       └── Dockerfile
+│   │
+│   ├── shared/                      # Shared code between services
+│   │   ├── utils/                   # Shared utility functions
+│   │   ├── config/                  # Shared configurations
+│   │   └── models/                  # Shared database models (optional)
+│   │
+│   ├── package.json                 # Backend dependencies
+│   └── .env                         # Environment variables (backend)
+│
+├── deployment/                      # Deployment configurations
+│   ├── render.yaml                  # Render deployment configurations
+│   └── .env                         # Deployment environment variables
+│
+├── .gitignore                       # Git ignore file
+├── README.md                        # Project documentation
+└── LICENSE                          # License file
