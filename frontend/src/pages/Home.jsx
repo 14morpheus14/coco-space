@@ -1,43 +1,77 @@
-import React from "react";
+import Input from "../components/Input";
+import { useState } from "react";
+import { LockKeyhole, User } from "lucide-react";
+import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
+import bg from "../assets/bg.jpeg";
 
 const Home = () => {
+  const [signupName, setSignupName] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+
+  const [authType, setAuthType] = useState("password");
+
+  
+
+
+  const [loginName, setLoginName] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const handleChangeAuth = () => {
+    setAuthType(authType === "password" ? "fingerprint" : "password");    
+  }
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center -pt-40">
-      <div className="flex border-2 border-emerald-600 p-44 rounded-lg">
-        <form className="flex flex-col items-center justify-center p-10 flex-1 gap-4">
-          <h3 className="font-bold">Create your space</h3>
+    <div className="h-[84vh] w-full flex items-center justify-center -pb-15" style={{ backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="flex flex-col md:flex-row gap-28 items-center justify-center">
+        <form className="flex flex-col items-center justify-center p-7 flex-1 gap-4">
+          <h3 className="font-bold text-2xl mb-4 relative bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600 text-transparent">Create your Space <div className="absolute left-0 -bottom-2 w-full h-[1px] bg-white"></div></h3>
           <div className="flex flex-col gap-3">
-            <input
-              className="outline-none border-2 border-green-500 py-2 px-3 rounded-md"
+            <Input
+              icon={User}
               type="text"
               placeholder="Your username"
               name="username"
+              value={signupName}
+              onChange={(e) => setSignupName(e.target.value)}
             />
-            <input
-              className="outline-none border-2 border-green-500 py-2 px-3 rounded-md"
+              {authType === "password" ?  <Input
+              icon={LockKeyhole}
+              event={handleChangeAuth}
               type="text"
               placeholder="************"
               name="password"
-            />
-            <button className="px-3 py-2 bg-yellow-500 rounded-md font-semibold">Create</button>
+              value={signupPassword}
+              onChange={(e) => setSignupPassword(e.target.value)}
+            /> : ""}
+            {signupPassword.length > 0 ? <PasswordStrengthMeter password={signupPassword}/> : ""}
+            <button className=" text-white px-3 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-bold text-xl">
+              Create
+            </button>
           </div>
         </form>
-        <form className="flex flex-col items-center justify-center p-10 flex-1 gap-4">
-          <h3 className="font-bold">Log in your space</h3>
+        <form className="flex flex-col items-center justify-center p-7 flex-1 gap-4">
+          <h3 className="font-bold text-2xl mb-4 relative bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600 text-transparent">Log in your space <div className="absolute bg-white left-0 -bottom-2 w-full h-[1px] "></div> </h3>
           <div className="flex flex-col gap-3">
-            <input
-              className="outline-none border-2 border-green-500 py-2 px-3 rounded-md"
+            <Input
+              icon={User}
               type="text"
               placeholder="Your username"
               name="username"
+              value={loginName}
+              onChange={(e) => setLoginName(e.target.value)}
             />
-            <input
-              className="outline-none border-2 border-green-500 py-2 px-3 rounded-md"
+            {authType === "password" ? <Input
+              icon={LockKeyhole}
+              event={handleChangeAuth}
               type="text"
               placeholder="************"
               name="password"
-            />
-            <button className="px-3 py-2 bg-yellow-500 rounded-md font-semibold">Login</button>
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+            /> : ""}
+            <button className="text-white px-3 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-bold text-xl">
+              Login
+            </button>
           </div>
         </form>
       </div>
