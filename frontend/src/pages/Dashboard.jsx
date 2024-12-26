@@ -1,4 +1,4 @@
-import { Cuboid, Mail, MessageSquare } from "lucide-react";
+import { Cloud, Cuboid, HardDrive, Mail, MailOpen, MessageSquare, StoreIcon, Users } from "lucide-react";
 import ServiceBox from "../components/ServiceBox";
 import bg from "../assets/bg.jpeg";
 
@@ -24,19 +24,19 @@ const Dashboard = () => {
         <hr className="w-3/4 border-t-2 border-gray-300/50" />
         <div className="flex items-center justify-center gap-10">
           <ServiceBox
-            icon={Mail}
+            icon={MailOpen}
             heading="Zephyr"
             paragraph="Your privacy-first e-mail."
             className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 text-white"
           />
           <ServiceBox
-            icon={Cuboid}
+            icon={Cloud}
             heading="Nimbus"
             paragraph="Stash your stuff on your private cloud."
             className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 text-white"
           />
           <ServiceBox
-            icon={MessageSquare}
+            icon={Users}
             heading="Agora"
             paragraph="Build your tribe on a privacy-first social platform."
             className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 text-white"
