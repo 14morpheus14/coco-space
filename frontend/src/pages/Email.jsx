@@ -63,7 +63,7 @@ const EmailHome = () => {
 
       {/* Header Section */}
       <div className="relative z-10 flex justify-between items-center p-6 bg-black/80 shadow-md">
-        <h1 className="text-3xl font-bold text-white">Zaphyr Mail</h1>
+        <h1 className="text-3xl font-bold text-white">Zephyr Mail</h1>
         <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 bg-black/50 p-2 rounded-lg">
           <Search size={24} className="text-gray-300" />
           <input
@@ -123,127 +123,121 @@ const EmailHome = () => {
         {/* Main Content */}
         <div className={`col-span-3 rounded-lg p-6 shadow-md overflow-y-auto ${themes[theme]}`}>
         <h2 className="text-2xl font-semibold mb-4">
-            {selectedSection === "Compose" ? (
-            "Compose Email"
-            ) : (
-            sections[selectedSection]  // Render only once
-            )}
+            {selectedSection}
         </h2>
-
-          <div className="p-4 bg-black/50 rounded-lg">
-
-          {selectedSection === "Compose" ? (
-            <div className="bg-gradient-to-t from-black/90 to-transparent p-8 rounded-3xl shadow-2xl max-w-4xl mx-auto text-white">
-                
-                {/* Subject Field */}
-                <div className="mb-6">
-                <input
-                    type="text"
-                    id="subject"
-                    className="w-full p-4 bg-black/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    placeholder="Subject"
-                />
-                </div>
-
-                {/* To Field - Multiple Recipients with CC and BCC options */}
-                <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex-1">
-                    <input
-                    type="email"
-                    id="to"
-                    className="p-4 w-full bg-black/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    placeholder="To:"
-                    />
-                </div>
-
-                {/* Multiple Recipients for CC and BCC */}
-                <div className="flex gap-4 flex-wrap">
-                    <div className="flex-1">
-                    <input
-                        type="email"
-                        id="cc"
-                        className="p-4 bg-black/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        placeholder="CC:"
-                    />
-                    </div>
-                    <div className="flex-1">
-                    <input
-                        type="email"
-                        id="bcc"
-                        className="p-4 bg-black/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        placeholder="BCC:"
-                    />
-                    </div>
-                </div>
-                </div>
-
-                {/* Body Field */}
-                <div className="mb-6">
-                <textarea
-                    id="body"
-                    className="w-full p-6 bg-black/70 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 h-96"
-                    placeholder="Write your mail here..."
-                />
-                </div>
-
-                {/* Action Buttons: Attach, Icons, Save, and Send */}
-                <div className="flex justify-between items-center">
-                {/* Attach Button */}
-                <label htmlFor="file" className="cursor-pointer text-indigo-400 hover:text-indigo-300 flex items-center gap-2 text-lg" title="Attach File">
-                    <Paperclip size={20} /> {/* Smaller size for the attach icon */}
-                </label>
-
-                {/* Text Formatting Icons - Positioned to the right of Attach and left of Save/Send */}
-                <div className="flex gap-4 items-center">
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Bold">
-                    <Bold size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Italic">
-                    <Italic size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Underline">
-                    <Underline size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Strikethrough">
-                    <Strikethrough size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Link">
-                    <Link size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Emoji">
-                    <Smile size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert from Cloud">
-                    <Upload size={18} />
-                    </button>
-                    <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Signature">
-                    <Edit size={18} />
-                    </button>
-                </div>
-
-                {/* Action Buttons: Save and Send */}
-                <div className="flex gap-6">
-                    <button
-                    type="button"
-                    className="px-6 py-3 bg-gray-600 text-white rounded-full hover:bg-gray-500 transition duration-200"
-                    >
-                    Save
-                    </button>
-                    <button
-                    type="submit"
-                    className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition duration-200"
-                    >
-                    Send
-                    </button>
-                </div>
-                </div>
-            </div>
-            ) : (
-            <span>{sections[selectedSection]}</span>
-            )}
+        <div
+            className={`p-4 rounded-lg ${
+                selectedSection !== "Compose Email" ? "bg-black/50" : "bg-transparent"
+            }`}
+            >
+            <span
+                className={`text-sm ${
+                selectedSection !== "Compose Email" ? "text-gray-400" : "text-black"
+                }`}
+            >
+                {sections[selectedSection]}
+            </span>
 
 
-            {selectedSection === "Settings" ? (
+            {selectedSection === "Compose Email" && (
+  <div className="flex flex-col bg-white text-black p-8 rounded-lg shadow-lg w-full h-full">
+    {/* Subject Field */}
+    <input
+      type="text"
+      id="subject"
+      className="w-full p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      placeholder="Subject"
+    />
+
+    {/* To, CC, BCC Fields */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+      <input
+        type="email"
+        id="to"
+        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        placeholder="To:"
+      />
+      <input
+        type="email"
+        id="cc"
+        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        placeholder="CC:"
+      />
+      <input
+        type="email"
+        id="bcc"
+        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        placeholder="BCC:"
+      />
+    </div>
+
+    {/* Body Field */}
+    <textarea
+      id="body"
+      className="w-full p-6 text-black border border-gray-300 rounded h-96 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-4"
+      placeholder="Write your mail here..."
+    />
+
+    {/* Action Buttons: Attach, Icons, Save, and Send */}
+    <div className="flex justify-between items-center mt-4">
+      {/* Attach Button */}
+      <label
+        htmlFor="file"
+        className="cursor-pointer text-indigo-400 hover:text-indigo-300 flex items-center gap-2 text-lg"
+        title="Attach File"
+      >
+        <Paperclip size={20} />
+      </label>
+
+      {/* Text Formatting Icons */}
+      <div className="flex gap-4 items-center">
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Bold">
+          <Bold size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Italic">
+          <Italic size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Underline">
+          <Underline size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Strikethrough">
+          <Strikethrough size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Link">
+          <Link size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Emoji">
+          <Smile size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert from Cloud">
+          <Upload size={18} />
+        </button>
+        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Signature">
+          <Edit size={18} />
+        </button>
+      </div>
+
+      {/* Action Buttons: Save and Send */}
+      <div className="flex gap-6">
+        <button
+          type="button"
+          className="px-6 py-3 bg-gray-600 text-white rounded-full hover:bg-gray-500 transition duration-200"
+        >
+          Save
+        </button>
+        <button
+          type="submit"
+          className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition duration-200"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
+            {selectedSection === "Settings" && (
               <>
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-pink-400">Themes</h3>
@@ -273,8 +267,6 @@ const EmailHome = () => {
                   <p>If you need assistance, please contact support at support@cocospace.com</p>
                 </div>
               </>
-            ) : (
-              <span>{sections[selectedSection]}</span>
             )}
           </div>
         </div>
@@ -284,7 +276,7 @@ const EmailHome = () => {
       <div className="fixed bottom-20 right-10 z-50">
         <button
           className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600"
-          onClick={() => setSelectedSection("Compose")}
+          onClick={() => setSelectedSection("Compose Email")}
         >
           <Edit size={24} />
         </button>
