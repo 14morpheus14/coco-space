@@ -1,6 +1,6 @@
 import Input from "../components/Input";
 import { useState } from "react";
-import { LockKeyhole, User, Fingerprint } from "lucide-react";  // Imported Fingerprint icon
+import { LockKeyhole, User, Fingerprint } from "lucide-react";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import bg from "../assets/bg.jpeg";
 
@@ -41,11 +41,11 @@ const Home = () => {
         </div>
 
         {/* Sign-up Section */}
-        <form className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20">
+        <form className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 gap-2">
           <h3 className="font-bold text-3xl text-white bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 mb-4">
             Create your Space
           </h3>
-          <div className="flex flex-col gap-4 w-80">
+          <div className="flex flex-col gap-1 w-80">
             <Input
               icon={User}
               type="text"
@@ -68,7 +68,7 @@ const Home = () => {
             {authType === "fingerprint" && (
               <div 
                 className="flex justify-center items-center border border-white/20 rounded-lg px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-200 cursor-pointer"
-                onClick={handleChangeAuth}  // Toggle back to password input
+                onClick={handleChangeAuth}
               >
                 <Fingerprint className="text-white" size={24} />
               </div>
@@ -81,11 +81,11 @@ const Home = () => {
         </form>
 
         {/* Login Section */}
-        <form className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20">
+        <form className="flex flex-col items-center justify-center bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 gap-2">
           <h3 className="font-bold text-3xl text-white bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600 mb-4">
             Log in your Space
           </h3>
-          <div className="flex flex-col gap-4 w-80">
+          <div className="flex flex-col gap-1 w-80">
             <Input
               icon={User}
               type="text"

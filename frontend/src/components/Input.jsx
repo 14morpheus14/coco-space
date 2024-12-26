@@ -1,3 +1,4 @@
+//This is the input component which is to be rendered in the / directory
 const Input = ({icon: Icon, event: click, ...props}) => {
   return (
     <div className="relative mb-5 bg-transparent">
