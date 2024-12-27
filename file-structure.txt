@@ -24,8 +24,8 @@ project/
 │   │   │   ├── ipfsService.js       # IPFS file interaction
 │   │   │   ├── emailService.js      # Email API service
 │   │   │   └── dataStorageService.js # Data storage API service
-│   │   ├── redux/                    # State-management
-│   │   │   ├── store.js
+│   │   ├── context/                    # State-management
+│   │   │   ├── AuthProvider.jsx
 │   │   ├── styles/                  # CSS/SCSS files
 │   │   │   ├── index.css            # Global CSS
 │   │   │   ├── login.css            # Login page styles
