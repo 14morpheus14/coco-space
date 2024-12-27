@@ -13,6 +13,9 @@ import {
   CloudAlert,
   Cloudy,
   Plus,
+  FilePlus,
+  FolderPlus,
+  Upload,
 } from "lucide-react";
 import bg from "../assets/bg.jpeg";
 import "react-calendar/dist/Calendar.css";
@@ -22,6 +25,10 @@ const EmailHome = () => {
   const [theme, setTheme] = useState("default");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timeZone, setTimeZone] = useState("UTC");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [files, setFiles] = useState([]);
+  const [folders, setFolders] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const sections = {
     Home: "Welcome to Nimbus.",
@@ -56,6 +63,48 @@ const EmailHome = () => {
   }).format(currentTime);
 
   const handleThemeChange = (newTheme) => setTheme(newTheme);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const handleFileUpload = (event) => {
+    const uploadedFiles = Array.from(event.target.files).map((file) => ({
+      name: file.name,
+      type: "file",
+    }));
+    setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
+  };
+  
+  const handleNewFolder = () => {
+    const folderName = prompt("Enter folder name:");
+    if (folderName) {
+      setFolders((prevFolders) => [
+        ...prevFolders,
+        { name: folderName, type: "folder" },
+      ]);
+    }
+  };
+  
+  const handleNewFile = () => {
+    const fileName = prompt("Enter file name:");
+    if (fileName) {
+      setFiles((prevFiles) => [...prevFiles, { name: fileName, type: "file" }]);
+    }
+  };
+  
+  const handleOpenFile = (file) => {
+    setSelectedFile(file);
+  };
+
+  const handleDeleteFile = (fileName) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
+  };  
+
+  const handleDeleteFolder = (folderName) => {
+    setFolders((prevFolders) =>
+      prevFolders.filter((folder) => folder.name !== folderName)
+    );
+  };
+  
 
   return (
     <div
@@ -147,6 +196,76 @@ const EmailHome = () => {
               {sections[selectedSection]}
             </span>
 
+            <div className="grid grid-cols-2 gap-4">
+              {folders.map((folder, index) => (
+                <div key={index} className="p-4 bg-blue-100 rounded shadow flex justify-between items-center">
+                  <div className="flex items-center">
+                    <FolderPlus size={20} className="mr-2" />
+                    {folder.name}
+                  </div>
+                  <button
+                    className="bg-red-500 text-white px-2 py-1 rounded"
+                    onClick={() => handleDeleteFolder(folder.name)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+              {files.map((file, index) => (
+                <div key={index} className="p-4 bg-green-100 rounded shadow flex justify-between items-center">
+                  <div className="flex items-center">
+                    <FilePlus size={20} className="mr-2" />
+                    {file.name}
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleOpenFile(file)}
+                    >
+                      Open
+                    </button>
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleDeleteFile(file.name)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {selectedFile && (
+              <div className="fixed inset-0 bg-black/60 flex justify-center items-center">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                  <h2 className="text-xl font-bold mb-4">{selectedFile.name}</h2>
+                  <p>This is a placeholder for file content.</p>
+                  <button
+                    className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
+                    onClick={() => setSelectedFile(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+
+
+            {selectedFile && (
+              <div className="fixed inset-0 bg-black/60 flex justify-center items-center">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                  <h2 className="text-xl font-bold mb-4">{selectedFile.name}</h2>
+                  <p>This is a placeholder for file content.</p>
+                  <button
+                    className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
+                    onClick={() => setSelectedFile(null)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+
+
             {selectedSection === "Settings" && (
               <>
                 <div className="mb-4">
@@ -200,13 +319,42 @@ const EmailHome = () => {
           </div>
         </div>
       </div>
+
       <div className="fixed bottom-20 right-10 z-50">
         <button
           className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600"
-          onClick={() => setSelectedSection("Home")}
+          onClick={toggleMenu}
         >
           <Plus size={24} />
         </button>
+        
+        {/* File Management Menu */}
+        {menuOpen && (
+          <div className="absolute bottom-16 right-0 bg-white text-black shadow-lg rounded-lg w-48 p-3">
+            <button
+              className="flex items-center gap-2 p-2 w-full text-left hover:bg-gray-100 rounded"
+              onClick={handleNewFile}
+            >
+              <FilePlus size={20} /> New File
+            </button>
+            <button
+              className="flex items-center gap-2 p-2 w-full text-left hover:bg-gray-100 rounded"
+              onClick={handleNewFolder}
+            >
+              <FolderPlus size={20} /> New Folder
+            </button>
+            <label className="flex items-center gap-2 p-2 w-full text-left hover:bg-gray-100 rounded cursor-pointer">
+              <Upload size={20} /> Upload File
+              <input
+                type="file"
+                multiple
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+            </label>
+          </div>
+        )}
+
       </div>
     </div>
   );
