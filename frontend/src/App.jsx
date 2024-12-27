@@ -6,6 +6,7 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Dashboard from "./pages/Dashboard"
 import EmailHome from "./pages/Email"
+import Storage from "./pages/Storage"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/mail" element={<EmailHome/>}/>
+          <Route path="/storage" element={<Storage/>}/>
         </Routes>
         <Footer/>
       </Router>

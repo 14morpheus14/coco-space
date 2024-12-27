@@ -1,11 +1,32 @@
 import { useState, useEffect } from "react";
 import {
-  MailOpen, Inbox, Star, Send, Search, Trash2, Archive, Edit3, Settings, HelpCircle, AlertCircle, Clock, User, Palette, MessageCircle, Bell, Heart,
-  Edit, Bold, Italic, Underline, Strikethrough, Link, Smile, Upload, Paperclip
+  MailOpen,
+  Inbox,
+  Star,
+  Send,
+  Search,
+  Trash2,
+  Archive,
+  Edit3,
+  Settings,
+  AlertCircle,
+  Clock,
+  User,
+  MessageCircle,
+  Bell,
+  Edit,
+  Bold,
+  Italic,
+  Underline,
+  Strikethrough,
+  Link,
+  Smile,
+  Upload,
+  Paperclip,
 } from "lucide-react";
 import bg from "../assets/bg.jpeg";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 const EmailHome = () => {
   const [selectedSection, setSelectedSection] = useState("Inbox");
@@ -31,7 +52,8 @@ const EmailHome = () => {
   const themes = {
     default: "bg-black/70 text-white",
     light: "bg-gray-200 text-black",
-    colorful: "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white",
+    colorful:
+      "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white",
   };
 
   useEffect(() => {
@@ -73,15 +95,24 @@ const EmailHome = () => {
           />
         </div>
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsCalendarVisible(!isCalendarVisible)}>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsCalendarVisible(!isCalendarVisible)}
+          >
             <Clock size={20} className="text-white" />
             <span className="text-white">Calendar</span>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setIsContactsVisible(!isContactsVisible)}>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsContactsVisible(!isContactsVisible)}
+          >
             <User size={20} className="text-white" />
             <span className="text-white">Contacts</span>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSelectedSection("Settings")}>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setSelectedSection("Settings")}
+          >
             <Settings size={20} className="text-white" />
             <span className="text-white">Settings</span>
           </div>
@@ -95,7 +126,9 @@ const EmailHome = () => {
           {Object.keys(sections).map((section) => (
             <div
               key={section}
-              className={`flex items-center gap-2 cursor-pointer ${selectedSection === section ? "text-blue-400" : ""}`}
+              className={`flex items-center gap-2 cursor-pointer ${
+                selectedSection === section ? "text-blue-400" : ""
+              } mb-3`}
               onClick={() => setSelectedSection(section)}
             >
               {getIcon(section)}
@@ -121,141 +154,180 @@ const EmailHome = () => {
         </div>
 
         {/* Main Content */}
-        <div className={`col-span-3 rounded-lg p-6 shadow-md overflow-y-auto ${themes[theme]}`}>
-        <h2 className="text-2xl font-semibold mb-4">
-            {selectedSection}
-        </h2>
         <div
+          className={`col-span-3 rounded-lg p-6 shadow-md overflow-y-auto ${themes[theme]}`}
+        >
+          <h2 className="text-2xl font-semibold mb-4">{selectedSection}</h2>
+          <div
             className={`p-4 rounded-lg ${
-                selectedSection !== "Compose Email" ? "bg-black/50" : "bg-transparent"
+              selectedSection !== "Compose Email"
+                ? "bg-black/50"
+                : "bg-transparent"
             }`}
-            >
+          >
             <span
-                className={`text-sm ${
-                selectedSection !== "Compose Email" ? "text-gray-400" : "text-black"
-                }`}
+              className={`text-sm ${
+                selectedSection !== "Compose Email"
+                  ? "text-gray-400"
+                  : "text-black"
+              }`}
             >
-                {sections[selectedSection]}
+              {sections[selectedSection]}
             </span>
-
-
             {selectedSection === "Compose Email" && (
-  <div className="flex flex-col bg-white text-black p-8 rounded-lg shadow-lg w-full h-full">
-    {/* Subject Field */}
-    <input
-      type="text"
-      id="subject"
-      className="w-full p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      placeholder="Subject"
-    />
+              <div className="flex flex-col bg-white text-black p-8 rounded-lg shadow-lg w-full h-full">
+                {/* Subject Field */}
+                <input
+                  type="text"
+                  id="subject"
+                  className="w-full p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Subject"
+                />
 
-    {/* To, CC, BCC Fields */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-      <input
-        type="email"
-        id="to"
-        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="To:"
-      />
-      <input
-        type="email"
-        id="cc"
-        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="CC:"
-      />
-      <input
-        type="email"
-        id="bcc"
-        className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="BCC:"
-      />
-    </div>
+                {/* To, CC, BCC Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <input
+                    type="email"
+                    id="to"
+                    className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="To:"
+                  />
+                  <input
+                    type="email"
+                    id="cc"
+                    className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="CC:"
+                  />
+                  <input
+                    type="email"
+                    id="bcc"
+                    className="p-4 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    placeholder="BCC:"
+                  />
+                </div>
 
-    {/* Body Field */}
-    <textarea
-      id="body"
-      className="w-full p-6 text-black border border-gray-300 rounded h-96 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-4"
-      placeholder="Write your mail here..."
-    />
+                {/* Body Field */}
+                <textarea
+                  id="body"
+                  className="w-full p-6 text-black border border-gray-300 rounded h-96 focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-4"
+                  placeholder="Write your mail here..."
+                />
 
-    {/* Action Buttons: Attach, Icons, Save, and Send */}
-    <div className="flex justify-between items-center mt-4">
-      {/* Attach Button */}
-      <label
-        htmlFor="file"
-        className="cursor-pointer text-indigo-400 hover:text-indigo-300 flex items-center gap-2 text-lg"
-        title="Attach File"
-      >
-        <Paperclip size={20} />
-      </label>
+                {/* Action Buttons: Attach, Icons, Save, and Send */}
+                <div className="flex justify-between items-center mt-4">
+                  {/* Attach Button */}
+                  <label
+                    htmlFor="file"
+                    className="cursor-pointer text-indigo-400 hover:text-indigo-300 flex items-center gap-2 text-lg"
+                    title="Attach File"
+                  >
+                    <Paperclip size={20} />
+                  </label>
 
-      {/* Text Formatting Icons */}
-      <div className="flex gap-4 items-center">
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Bold">
-          <Bold size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Italic">
-          <Italic size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Underline">
-          <Underline size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Strikethrough">
-          <Strikethrough size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Link">
-          <Link size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Emoji">
-          <Smile size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert from Cloud">
-          <Upload size={18} />
-        </button>
-        <button className="text-xl cursor-pointer hover:text-indigo-400" title="Insert Signature">
-          <Edit size={18} />
-        </button>
-      </div>
+                  {/* Text Formatting Icons */}
+                  <div className="flex gap-4 items-center">
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Bold"
+                    >
+                      <Bold size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Italic"
+                    >
+                      <Italic size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Underline"
+                    >
+                      <Underline size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Strikethrough"
+                    >
+                      <Strikethrough size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Insert Link"
+                    >
+                      <Link size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Insert Emoji"
+                    >
+                      <Smile size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Insert from Cloud"
+                    >
+                      <Upload size={18} />
+                    </button>
+                    <button
+                      className="text-xl cursor-pointer hover:text-indigo-400"
+                      title="Insert Signature"
+                    >
+                      <Edit size={18} />
+                    </button>
+                  </div>
 
-      {/* Action Buttons: Save and Send */}
-      <div className="flex gap-6">
-        <button
-          type="button"
-          className="px-6 py-3 bg-gray-600 text-white rounded-full hover:bg-gray-500 transition duration-200"
-        >
-          Save
-        </button>
-        <button
-          type="submit"
-          className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition duration-200"
-        >
-          Send
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
+                  {/* Action Buttons: Save and Send */}
+                  <div className="flex gap-6">
+                    <button
+                      type="button"
+                      className="px-6 py-3 bg-gray-600 text-white rounded-full hover:bg-gray-500 transition duration-200"
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-500 transition duration-200"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {selectedSection === "Settings" && (
               <>
                 <div className="mb-4">
-                  <h3 className="text-xl font-semibold text-pink-400">Themes</h3>
+                  <h3 className="text-xl font-semibold text-pink-400">
+                    Themes
+                  </h3>
                   <div className="flex gap-4">
                     <button
-                      className={`p-2 rounded ${theme === "default" ? "bg-gray-800 text-white" : "bg-transparent"}`}
+                      className={`p-2 rounded ${
+                        theme === "default"
+                          ? "bg-gray-800 text-white"
+                          : "bg-transparent"
+                      }`}
                       onClick={() => handleThemeChange("default")}
                     >
                       Default
                     </button>
                     <button
-                      className={`p-2 rounded ${theme === "light" ? "bg-gray-800 text-white" : "bg-transparent"}`}
+                      className={`p-2 rounded ${
+                        theme === "light"
+                          ? "bg-gray-800 text-white"
+                          : "bg-transparent"
+                      }`}
                       onClick={() => handleThemeChange("light")}
                     >
                       Light
                     </button>
                     <button
-                      className={`p-2 rounded ${theme === "colorful" ? "bg-gray-800 text-white" : "bg-transparent"}`}
+                      className={`p-2 rounded ${
+                        theme === "colorful"
+                          ? "bg-gray-800 text-white"
+                          : "bg-transparent"
+                      }`}
                       onClick={() => handleThemeChange("colorful")}
                     >
                       Colorful
@@ -263,8 +335,13 @@ const EmailHome = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-pink-400">Help & Support</h3>
-                  <p>If you need assistance, please contact support at support@cocospace.com</p>
+                  <h3 className="text-xl font-semibold text-pink-400">
+                    Help & Support
+                  </h3>
+                  <p>
+                    If you need assistance, please contact support at
+                    support@cocospace.com
+                  </p>
                 </div>
               </>
             )}
@@ -284,25 +361,29 @@ const EmailHome = () => {
 
       {/* Floating Panel for Calendar */}
       {isCalendarVisible && (
-        <div className={`absolute bottom-24 right-4 p-4 shadow-md rounded-lg z-50 w-72 ${themes[theme]}`}>
-          <Calendar
-            className="react-calendar w-full rounded-lg shadow-md"
-            next2Label={null}
-            prev2Label={null}
-            showNeighboringMonth={false}
-          />
-          <button
-            onClick={() => setIsCalendarVisible(false)}
-            className="absolute top-0 right-0 p-2 bg-red-500 text-white rounded-full"
-          >
-            X
-          </button>
-        </div>
+        <div
+        className={`absolute bottom-24 right-4 p-4 shadow-md rounded-lg z-50 w-72 bg-white text-black`}
+      >
+        <Calendar
+          className="react-calendar w-full rounded-lg shadow-md"
+          next2Label={null}
+          prev2Label={null}
+          showNeighboringMonth={false}
+        />
+        <button
+          onClick={() => setIsCalendarVisible(false)}
+          className="absolute top-0 right-0 p-2 bg-red-500 text-white rounded-full"
+        >
+          X
+        </button>
+      </div>
+      
       )}
-
       {/* Floating Panel for Contacts */}
       {isContactsVisible && (
-        <div className={`absolute bottom-24 right-80 p-4 shadow-md rounded-lg z-50 w-72 ${themes[theme]}`}>
+        <div
+          className={`absolute bottom-24 right-80 p-4 shadow-md rounded-lg z-50 w-72 ${themes[theme]}`}
+        >
           <ul>
             <li className="p-2">contact1@example.com</li>
             <li className="p-2">contact2@example.com</li>
