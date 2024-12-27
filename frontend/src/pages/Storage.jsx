@@ -12,12 +12,13 @@ import {
   Share,
   CloudAlert,
   Cloudy,
+  Plus,
 } from "lucide-react";
 import bg from "../assets/bg.jpeg";
 import "react-calendar/dist/Calendar.css";
 
 const EmailHome = () => {
-  const [selectedSection, setSelectedSection] = useState("Inbox");
+  const [selectedSection, setSelectedSection] = useState("Home");
   const [theme, setTheme] = useState("default");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timeZone, setTimeZone] = useState("UTC");
@@ -198,6 +199,14 @@ const EmailHome = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="fixed bottom-20 right-10 z-50">
+        <button
+          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600"
+          onClick={() => setSelectedSection("Home")}
+        >
+          <Plus size={24} />
+        </button>
       </div>
     </div>
   );

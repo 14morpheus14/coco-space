@@ -36,7 +36,7 @@ const Home = () => {
         
         {/* Tagline */}
         <div className="text-center text-white text-xl font-semibold mb-8 w-3/4 sm:w-1/2 mx-auto" style={{ fontFamily: "'Merriweather', serif", textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)" }}>
-          <p>"The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion."</p>
+          <p>&quot;The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.&quot;</p>
           <p>- Albert Camus</p>
         </div>
 

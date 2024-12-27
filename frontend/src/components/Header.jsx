@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import image from "../assets/logo.jpeg";
+import { useContext } from "react";
+import { AuthContext } from "../context/Authprovider"
 
 const Header = () => {
+
+  const { user } = useContext(AuthContext)
   return (
     <div className="flex items-center justify-between px-10 py-2 bg-black text-white">
       {/* Logo and Text Section */}
@@ -17,7 +21,7 @@ const Header = () => {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex items-center gap-8">
+      <div className={`flex items-center gap-8`}>
         <Link
           className="relative inline-block group"
           to="/team"
