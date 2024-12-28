@@ -5,7 +5,7 @@ import { AuthContext } from "../context/Authprovider"
 
 const Header = () => {
 
-  const { user } = useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext)
   return (
     <div className="flex items-center justify-between px-10 py-2 bg-black text-white">
       {/* Logo and Text Section */}
@@ -21,7 +21,7 @@ const Header = () => {
       </div>
 
       {/* Navigation Links */}
-      <div className={`flex items-center gap-8`}>
+      {user ? <button onClick={logout} className="px-4 py-2 bg-emerald-500 text-black font-semibold rounded-md">Logout</button> :       <div className="flex items-center gap-8">
         <Link
           className="relative inline-block group"
           to="/team"
@@ -43,7 +43,7 @@ const Header = () => {
           Forum
           <div className="absolute bg-white left-0 -bottom-1 w-0 h-[4px] rounded-sm transition-all ease-in-out duration-500 group-hover:w-full"></div>
         </Link>
-      </div>
+      </div>}
     </div>
   );
 };

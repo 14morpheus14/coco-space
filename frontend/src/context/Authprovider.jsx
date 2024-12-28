@@ -7,8 +7,10 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const login = (userData) => {
+    setLoading(true);
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
+    setLoading(false);
   };
   const logout = () => {
     setUser(null);
@@ -25,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

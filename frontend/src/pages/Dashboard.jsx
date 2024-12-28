@@ -37,12 +37,6 @@ const Dashboard = () => {
             className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 text-white"
             path="../storage"
           />
-          <ServiceBox
-            icon={Users}
-            heading="Agora"
-            paragraph="Build your tribe on a privacy-first social platform."
-            className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/20 text-white"
-          />
         </div>
       </div>
     </div>
