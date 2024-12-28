@@ -9,6 +9,9 @@ import EmailHome from "./pages/Email";
 import Storage from "./pages/Storage";
 import { AuthContext } from "./context/Authprovider";
 import { useContext } from "react";
+import Team from "./pages/Team";
+import Docs from "./pages/Docs";
+import Forum from "./pages/Forum";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -20,6 +23,9 @@ function App() {
         {!user ? (
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/docs" element={<Docs />} />
+            <Route path="/forum" element={<Forum />} />
           </Routes>
         ) : (
           <Routes>
