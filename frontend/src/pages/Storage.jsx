@@ -73,7 +73,7 @@ const EmailHome = () => {
     }));
     setFiles((prevFiles) => [...prevFiles, ...uploadedFiles]);
   };
-  
+
   const handleNewFolder = () => {
     const folderName = prompt("Enter folder name:");
     if (folderName) {
@@ -83,28 +83,27 @@ const EmailHome = () => {
       ]);
     }
   };
-  
+
   const handleNewFile = () => {
     const fileName = prompt("Enter file name:");
     if (fileName) {
       setFiles((prevFiles) => [...prevFiles, { name: fileName, type: "file" }]);
     }
   };
-  
+
   const handleOpenFile = (file) => {
     setSelectedFile(file);
   };
 
   const handleDeleteFile = (fileName) => {
     setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
-  };  
+  };
 
   const handleDeleteFolder = (folderName) => {
     setFolders((prevFolders) =>
       prevFolders.filter((folder) => folder.name !== folderName)
     );
   };
-  
 
   return (
     <div
@@ -198,7 +197,10 @@ const EmailHome = () => {
 
             <div className="grid grid-cols-2 gap-4">
               {folders.map((folder, index) => (
-                <div key={index} className="p-4 bg-blue-100 rounded shadow flex justify-between items-center">
+                <div
+                  key={index}
+                  className="p-4 bg-blue-300 rounded shadow flex justify-between items-center"
+                >
                   <div className="flex items-center">
                     <FolderPlus size={20} className="mr-2" />
                     {folder.name}
@@ -212,7 +214,10 @@ const EmailHome = () => {
                 </div>
               ))}
               {files.map((file, index) => (
-                <div key={index} className="p-4 bg-green-100 rounded shadow flex justify-between items-center">
+                <div
+                  key={index}
+                  className="p-4 bg-green-400 rounded shadow flex justify-between items-center"
+                >
                   <div className="flex items-center">
                     <FilePlus size={20} className="mr-2" />
                     {file.name}
@@ -237,7 +242,9 @@ const EmailHome = () => {
             {selectedFile && (
               <div className="fixed inset-0 bg-black/60 flex justify-center items-center">
                 <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                  <h2 className="text-xl font-bold mb-4">{selectedFile.name}</h2>
+                  <h2 className="text-xl font-bold mb-4">
+                    {selectedFile.name}
+                  </h2>
                   <p>This is a placeholder for file content.</p>
                   <button
                     className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
@@ -248,12 +255,13 @@ const EmailHome = () => {
                 </div>
               </div>
             )}
-
 
             {selectedFile && (
               <div className="fixed inset-0 bg-black/60 flex justify-center items-center">
                 <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                  <h2 className="text-xl font-bold mb-4">{selectedFile.name}</h2>
+                  <h2 className="text-xl font-bold mb-4">
+                    {selectedFile.name}
+                  </h2>
                   <p>This is a placeholder for file content.</p>
                   <button
                     className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
@@ -264,7 +272,6 @@ const EmailHome = () => {
                 </div>
               </div>
             )}
-
 
             {selectedSection === "Settings" && (
               <>
@@ -322,12 +329,25 @@ const EmailHome = () => {
 
       <div className="fixed bottom-20 right-10 z-50">
         <button
-          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600"
+          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 group"
           onClick={toggleMenu}
         >
           <Plus size={24} />
+          <span className={`absolute bottom-20 right-[-7px] transform -translate-x-1/2 mb-2 hidden group-hover:block text-white bg-black text-xs p-1 rounded-md px-2 outline-none ${theme === "default" ? "border-white border-2 border-solid" : ""}`}>
+            Add
+          </span>
         </button>
-        
+      <div className="fixed bottom-20 right-10 z-50">
+        <button
+          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 group"
+          onClick={toggleMenu}
+        >
+          <Plus size={24} />
+          <span className={`absolute bottom-20 right-[-7px] transform -translate-x-1/2 mb-2 hidden group-hover:block text-white bg-black text-xs p-1 rounded-md px-2 outline-none ${theme === "default" ? "border-white border-2 border-solid" : ""}`}>
+            Add
+          </span>
+        </button>
+
         {/* File Management Menu */}
         {menuOpen && (
           <div className="absolute bottom-16 right-0 bg-white text-black shadow-lg rounded-lg w-48 p-3">
@@ -354,7 +374,6 @@ const EmailHome = () => {
             </label>
           </div>
         )}
-
       </div>
     </div>
   );

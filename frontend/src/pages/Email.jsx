@@ -352,10 +352,13 @@ const EmailHome = () => {
       {/* Floating Compose Button */}
       <div className="fixed bottom-20 right-10 z-50">
         <button
-          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600"
+          className="p-4 rounded-full bg-blue-500 text-white shadow-lg hover:bg-blue-600 group"
           onClick={() => setSelectedSection("Compose Email")}
         >
           <Edit size={24} />
+          <span className={`absolute bottom-20 right-[-7px] transform -translate-x-1/2 mb-2 hidden group-hover:block text-white bg-black text-xs p-1 rounded-md px-2 outline-none ${theme === "default" ? "border-white border-2 border-solid" : ""}`}>
+            Add
+          </span>
         </button>
       </div>
 
